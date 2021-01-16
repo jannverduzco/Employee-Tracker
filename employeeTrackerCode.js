@@ -18,6 +18,7 @@ connection.connect(function(err) {
     runEmployeePrompt();
 });
 
+// prompts user with choices of actions
 function runEmployeePrompt() {
     inquirer
         .prompt({
@@ -62,6 +63,7 @@ function runEmployeePrompt() {
         })
 }
 
+// when this function is called it displays the employees first and last name
 function viewEmployees() {
     var query = "SELECT first_name, last_name FROM employee"
     connection.query(query, (err, data) => {
@@ -72,6 +74,7 @@ function viewEmployees() {
 
 }
 
+// when this function is called it displays employees per corresponding departments
 function viewEmployeesByDep() {
 
 }
