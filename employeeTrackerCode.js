@@ -1,7 +1,8 @@
 // Dependencies
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-// const util = require("util");
+// allows us to use console.table
+require("console.table")
 
 // connection object that establishes port 
 var connection = mysql.createConnection({
@@ -9,7 +10,7 @@ var connection = mysql.createConnection({
     port: 3306,
     user: "root",
     password: "Swimm210!",
-    database: "employee_DB;"
+    database: "employee_db",
 });
 
 connection.connect(function(err) {
@@ -23,7 +24,7 @@ function runEmployeePrompt() {
             name: "action",
             type: "rawlist",
             message: "What would you like to do?",
-            choices: ["View All Employees", "View All Employees By Department", "View All Employees By Manager", "Add Employee", "Remove Employee", "Update Employee Role", "Update Employee Manager"]
+            choices: ["View All Employees", "View All Employees By Department", "View All Employees By Manager", "Add Employee", "Remove Employee", "Update Employee Role", "Update Employee Manager", "Done"]
 
         })
         .then(function(answer) {
@@ -55,11 +56,19 @@ function runEmployeePrompt() {
                 case "Update Employee Manager":
                     updateEmployeeMngr();
                     break;
+                default:
+                    process.exit();
             }
         })
 }
 
 function viewEmployees() {
+    var query = "SELECT first_name, last_name FROM employee"
+    connection.query(query, (err, data) => {
+        console.table(data)
+        runEmployeePrompt();
+    })
+
 
 }
 

@@ -1,31 +1,28 @@
-DROP DATABASE IF EXISTS employee_DB;
+DROP DATABASE IF EXISTS employee_db;
 
-CREATE database employee_DB;
+CREATE database employee_db;
 
-USE DATABASE employee_DB;
+USE employee_db;
 
 CREATE TABLE department (
-    id INT NOT NULL,
     name VARCHAR(30),
-    PRIMARY KEY 
-) 
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY
+);
 
 CREATE TABLE role (
-    id INT NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     title VARCHAR(30),
     salary DECIMAL,
-    department_id INT,
-    PRIMARY KEY 
-)
+    department_id INT
+);
 
 CREATE TABLE employee (
-    id INT NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     first_name VARCHAR (30),
     last_name VARCHAR(30),
     role_id INT,
     manager_id INT
-    PRIMARY KEY
-)
+);
 
 SELECT * FROM department;
 SELECT * FROM role;
