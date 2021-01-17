@@ -26,7 +26,14 @@ function runEmployeePrompt() {
             name: "action",
             type: "rawlist",
             message: "What would you like to do?",
-            choices: ["View All Employees", "View All Employees By Department", "View All Employees By Manager", "Add Employee", "Remove Employee", "Update Employee Role", "Update Employee Manager", "Done"]
+            choices: ["View All Employees",
+                "View All Employees By Department",
+                "View All Employees By Manager",
+                "Add Employee", "Remove Employee",
+                "Update Employee Role",
+                "Update Employee Manager",
+                "Done"
+            ]
 
         }])
         .then(function(answer) {
@@ -66,7 +73,7 @@ function runEmployeePrompt() {
 
 // when this function is called it displays the employees first and last name
 function viewEmployees() {
-    var query = "SELECT first_name, last_name FROM employee"
+    var query = "SELECT first_name, last_name, role_id, manager_id FROM employee"
     connection.query(query, (err, data) => {
         console.table(data)
         runEmployeePrompt();
@@ -84,9 +91,7 @@ function viewEmployeesByDep() {
             choices: ["Admin", "Marketing", "Finance", "Sales", "HR", "IT", "Operations Management"]
         }])
         .then(function(answer) {
-            switch (answer.action) {
 
-            }
         })
 
 }
@@ -121,9 +126,18 @@ function addEmployee() {
         ])
         .then(function(answer) {
             console.log(answer)
+            connection.query(" INSERT INTO employee SET ?", {
+                first_name: answer.first_name,
+                last_name: answer.last_name,
+                role_id: answer.role_id,
+                manager_id: answer.manager_id,
+            }, function(err) {
+                if (err) throw (err)
+                console.log("Employee succesfully added!")
 
+                runEmployeePrompt();
+            })
         })
-
 }
 
 function removeEmployee() {
