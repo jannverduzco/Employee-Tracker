@@ -1,5 +1,5 @@
 
-INSERT INTO role(title, salary, department_id)
+INSERT INTO role (title, salary, department_id)
 VALUES ("Engineer", 100000.00, 1 ), ("Sales Person", 100000.00, 2);
 
 INSERT INTO department (name)

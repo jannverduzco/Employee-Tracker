@@ -1,6 +1,7 @@
 // Dependencies
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var util = require("util");
 // allows us to use console.table
 require("console.table")
 
@@ -21,13 +22,13 @@ connection.connect(function(err) {
 // prompts user with choices of actions
 function runEmployeePrompt() {
     inquirer
-        .prompt({
+        .prompt([{
             name: "action",
             type: "rawlist",
             message: "What would you like to do?",
             choices: ["View All Employees", "View All Employees By Department", "View All Employees By Manager", "Add Employee", "Remove Employee", "Update Employee Role", "Update Employee Manager", "Done"]
 
-        })
+        }])
         .then(function(answer) {
             switch (answer.action) {
                 case "View All Employees":
@@ -71,11 +72,22 @@ function viewEmployees() {
         runEmployeePrompt();
     })
 
-
 }
 
 // when this function is called it displays employees per corresponding departments
 function viewEmployeesByDep() {
+    inquirer
+        .prompt([{
+            name: "action",
+            type: "rawlist",
+            message: "Please select the departments you would like to view employess from",
+            choices: ["Admin", "Marketing", "Finance", "Sales", "HR", "IT", "Operations Management"]
+        }])
+        .then(function(answer) {
+            switch (answer.action) {
+
+            }
+        })
 
 }
 
@@ -84,6 +96,33 @@ function viewEmployeesByMngr() {
 }
 
 function addEmployee() {
+    inquirer
+        .prompt([{
+
+                type: "input",
+                name: "first_name",
+                message: "Please provide the employee's first name",
+            },
+            {
+                type: "input",
+                name: "last_name",
+                message: "Please provide the employee's last name",
+            },
+            {
+                type: "input",
+                name: "role_id",
+                message: "Please enter a role ID",
+            },
+            {
+                type: "input",
+                name: "manager_id",
+                message: "Please enter a manager ID",
+            }
+        ])
+        .then(function(answer) {
+            console.log(answer)
+
+        })
 
 }
 
