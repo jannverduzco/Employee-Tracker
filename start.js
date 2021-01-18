@@ -1,11 +1,11 @@
-// Dependencies
+// Dependencies =====================================================
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var util = require("util");
-// allows us to use console.table
+// allows us to use console.table =
 require("console.table")
 
-// connection object that establishes port 
+// connection object that establishes port ==========================
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -19,7 +19,7 @@ connection.connect(function(err) {
     runEmployeePrompt();
 });
 
-// prompts user with choices of actions
+// prompts user with choices of actions ============================
 function runEmployeePrompt() {
     inquirer
         .prompt([{
@@ -29,7 +29,8 @@ function runEmployeePrompt() {
             choices: ["View All Employees",
                 "View All Employees By Department",
                 "View All Employees By Manager",
-                "Add Employee", "Remove Employee",
+                "Add Employee",
+                "Remove Employee",
                 "Update Employee Role",
                 "Update Employee Manager",
                 "Done"
@@ -73,7 +74,7 @@ function runEmployeePrompt() {
 
 // when this function is called it displays the employees first and last name
 function viewEmployees() {
-    var query = "SELECT first_name, last_name, role_id, manager_id FROM employee"
+    var query = "SELECT  employee.id, employee.first_name, employee.last_name, employee.manager_id, department.department_name  FROM employee INNER JOIN department ON employee.id=department.id;";
     connection.query(query, (err, data) => {
         console.table(data)
         runEmployeePrompt();
@@ -91,6 +92,7 @@ function viewEmployeesByDep() {
             choices: ["Admin", "Marketing", "Finance", "Sales", "HR", "IT", "Operations Management"]
         }])
         .then(function(answer) {
+            console.log(answer)
 
         })
 
@@ -135,7 +137,7 @@ function addEmployee() {
                 if (err) throw (err)
                 console.log("Employee succesfully added!")
 
-                runEmployeePrompt();
+                // runEmployeePrompt();
             })
         })
 }
