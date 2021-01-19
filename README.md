@@ -40,8 +40,9 @@ Janneth Alvarado Verduzco - janneth_verduzco@live.com
 [![](Assets/demo.PNG)](https://drive.google.com/file/d/1A_rhoxrHgikzW9PPavcdCmBx-gr86Nei/view)
 
 
-### Initial Prompt
-![GitHub Logo](Assets/initial-prompt.jpg)
+### Initial Prompt 
+
+![GitHub Logo](Assets/initial-promt.jpg)
 
 
 ### Prompt Action List
