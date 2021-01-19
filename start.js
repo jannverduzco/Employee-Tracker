@@ -74,7 +74,7 @@ function runEmployeePrompt() {
 
 // when this function is called it displays the employees first and last name
 function viewEmployees() {
-    var query = "SELECT  employee.id, employee.first_name, employee.last_name, employee.manager_id, department.department_name  FROM employee INNER JOIN department ON employee.id=department.id;";
+    var query = "SELECT  employee.id, employee.first_name, employee.last_name, employee.role_id, employee.manager_id, department.department_name, role.title, role.salary  FROM employee RIGHT JOIN department ON employee.id=department.id LEFT JOIN role ON employee.id=role.id;";
     connection.query(query, (err, data) => {
         console.table(data)
         runEmployeePrompt();
@@ -136,8 +136,8 @@ function addEmployee() {
             }, function(err) {
                 if (err) throw (err)
                 console.log("Employee succesfully added!")
-
-                // runEmployeePrompt();
+                console.log(err)
+                runEmployeePrompt();
             })
         })
 }
