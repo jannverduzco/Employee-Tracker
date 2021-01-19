@@ -74,12 +74,11 @@ function runEmployeePrompt() {
 
 // when this function is called it displays the employees first and last name
 function viewEmployees() {
-    var query = "SELECT  employee.id, employee.first_name, employee.last_name, employee.role_id, employee.manager_id, department.department_name, role.title, role.salary  FROM employee RIGHT JOIN department ON employee.id=department.id LEFT JOIN role ON employee.id=role.id;";
+    var query = "SELECT * FROM employee INNER JOIN role ON employee.id = role.id;"
     connection.query(query, (err, data) => {
         console.table(data)
         runEmployeePrompt();
     })
-
 }
 
 // when this function is called it displays employees per corresponding departments
@@ -128,7 +127,7 @@ function addEmployee() {
         ])
         .then(function(answer) {
             console.log(answer)
-            connection.query(" INSERT INTO employee SET ?", {
+            connection.query("INSERT INTO employee SET ?", {
                 first_name: answer.first_name,
                 last_name: answer.last_name,
                 role_id: answer.role_id,
