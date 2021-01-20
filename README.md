@@ -36,8 +36,8 @@ Janneth Alvarado Verduzco - janneth_verduzco@live.com
 
 ## Mock-Up 
 
-### Demo
-[![](Assets/demo.PNG)](https://drive.google.com/file/d/1A_rhoxrHgikzW9PPavcdCmBx-gr86Nei/view)
+### App-Demo
+![Alt Text](https://media.giphy.com/media/tbANiIANQLrsXPZ9Kl/giphy.gif)
 
 
 ### Initial Prompt 
